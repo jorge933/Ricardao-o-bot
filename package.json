@@ -1,0 +1,22 @@
+{
+  "name": "ricardao-sapeca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "init-db": "node db/init.js"
+  },
+  "keywords": [],
+  "author": "Jorjão berranteiro caçador de onça macho",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}

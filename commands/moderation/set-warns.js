@@ -1,4 +1,4 @@
-const Database = require('../db/config');
+const Database = require('../../db/config');
 
 module.exports = async (client, msg, args) => {
     if (!msg.guild.member(msg.author).hasPermission("ADMINISTRATOR")) return;

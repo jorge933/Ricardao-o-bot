@@ -1,4 +1,4 @@
-const Database = require('../db/config');
+const Database = require('../../db/config');
 
 module.exports = async (client, msg, args) => {
     if (!msg.guild.member(msg.author).hasPermission("ADMINISTRATOR")) return;
@@ -11,6 +11,7 @@ module.exports = async (client, msg, args) => {
 
         if (ExistChannel) {
             await db.run('UPDATE guildManager SET welcome = ? WHERE guildId = ?', [args[0], msg.guild.id]);
+            await db.close()
             return msg.channel.send('Canal de boas vindas adicionado!');
         } else return msg.channel.send('Este canal não existe');
     } else {
@@ -20,6 +21,7 @@ module.exports = async (client, msg, args) => {
 
         if (ExistChannel) {
             await db.run('UPDATE guildManager SET welcome = ? WHERE guildId = ?', [args[0], msg.guild.id]);
+            await db.close()
             return msg.channel.send('Canal de boas vindas atualizado!');
         } else return msg.channel.send('Este canal não existe');
     }

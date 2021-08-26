@@ -1,10 +1,10 @@
-const Database = require("../db/config");
+const Database = require('../../db/config');
 
 module.exports = async (client, msg, argumentos) => {
     if (!msg.guild.member(msg.author).hasPermission("ADMINISTRATOR")) return;
 
     const roleId = argumentos[0];
-    console.log(argumentos);
+    (argumentos);
     if (isNaN(parseInt(roleId))) return msg.reply('Você precisa informar o id do cargo');
 
     const db = await Database();
@@ -16,6 +16,7 @@ module.exports = async (client, msg, argumentos) => {
 
         if (ExistRole) {
             await db.run('UPDATE guildManager SET roleMute = ? WHERE guildId = ?', [roleId, msg.guild.id]);
+            await db.close()
             return msg.channel.send('Cargo de mute adicionado!');
         } else return msg.channel.send('Este cargo não existe')
     } else {
@@ -25,6 +26,7 @@ module.exports = async (client, msg, argumentos) => {
 
         if (ExistRole) {
             await db.run('UPDATE guildManager SET roleMute = ? WHERE guildId = ?', [roleId, msg.guild.id]);
+            await db.close()
             return msg.channel.send('Cargo de mute atualizado!');
         } else return msg.channel.send('Este cargo não existe')
     }

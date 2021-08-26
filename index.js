@@ -5,6 +5,9 @@ require('dotenv').config();
 const prefix   = ".";
 const commands = require("./commandsReader")(prefix);
 
+client.commands = new Discord.Collection();
+client.queues = new Map();
+
 client.on('ready', () => {
     let number = 1;
     let bios = [
@@ -41,12 +44,23 @@ client.on('ready', () => {
 client.on("message", async msg => {
     if(!msg.author.bot){
         const args = msg.content.split(" ");
-        const argumentos = msg.content.toLowerCase().slice(prefix.length).trim().split(/ /g);
+        if (!msg.content.startsWith(prefix)) return;
 
+        const argumentos = msg.content.toLowerCase().slice(prefix.length).trim().split(/ /g);
         argumentos.shift();
-        
         if (commands[args[0]]) commands[args[0]](client, msg, argumentos);
+        // msg.guild.channels.create('1', {position: 1, type: 'text'});
     }
 });
+
+client.on('channelDelete', channell => {
+    channell.guild
+})
+
+// events
+require('./events/memberEvents')(client);
+require('./events/newGuild')(client);
+require('./events/roleDelete')(client);
+require('./events/channelDelete')(client);
 
 client.login(process.env.token);

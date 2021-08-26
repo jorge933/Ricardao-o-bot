@@ -23,12 +23,12 @@ const initDb = {
         await db.exec(`
             CREATE TABLE guildManager(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                guild INTEGER,
-                guildId INTEGER,
-                welcome INTEGER,
+                guild TEXT,
+                guildId TEXT,
+                welcome TEXT,
                 warns2ban INTEGER,
-                roleMute INTEGER,
-                roleInit INTEGER
+                roleMute TEXT,
+                roleInit TEXT
             )`);
 
         await db.close();

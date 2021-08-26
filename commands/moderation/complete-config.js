@@ -1,10 +1,11 @@
-const Database = require('../db/config');
+const Database = require('../../db/config');
 
 module.exports = async (client, msg, args) => {
     if (!msg.guild.member(msg.author).hasPermission("ADMINISTRATOR")) return;
     const db = await Database();
 
     const config = await db.all('SELECT * FROM guildManager WHERE guildId = ?', [msg.guild.id]);
+    await db.close()
 
     let message = ``;
     const line = `

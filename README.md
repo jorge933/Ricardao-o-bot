@@ -11,6 +11,7 @@ Primeiro passo clonar este repo e entrar na pasta dele, depois só executar isto
 modifique o .env example de acordo com o seu bot
 
 ```
+ npm run init-db
  npm start
 ```
 
